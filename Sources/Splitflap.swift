@@ -101,7 +101,14 @@ import UIKit
 
   /// The current displayed text.
   fileprivate var textAsToken: String?
+  
+  /**
+  Specifies if the animation should be done in reverse
 
+  The default value of this property is false.
+  */
+  open var reverse: Bool = false
+    
   /**
    The text displayed by the split-flap.
 
@@ -141,7 +148,11 @@ import UIKit
     }
 
     textAsToken = nil
-
+    
+    if reverse {
+        flaps.reverse()
+    }
+    
     for (index, flap) in flaps.enumerated() {
       let token: String?   = index < tokens.count ? tokens[index] : nil
       let rotationDuration = animated ? target.splitflap(self, rotationDurationForFlapAtIndex: index) : 0
